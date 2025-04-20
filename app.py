@@ -394,7 +394,7 @@ p, div, span {
     margin-left: 5px;
     font-size: 14px;
 }
-
+            
 .stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>select {
     background-color: white !important;
     color: var(--dark) !important;
@@ -413,6 +413,7 @@ input, textarea {
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 # Session state
 if 'logged_in' not in st.session_state:
@@ -464,6 +465,23 @@ if not st.session_state.logged_in:
             else:
                 st.sidebar.error("Username already exists.")
                 st.error("Username already exists.")
+    
+    st.markdown(
+        """
+        <div class="footer">
+            &copy; 2025 GSV BLOGS. All rights reserved.
+        </div>
+
+        <style>
+        .footer{
+            margin-top:30px;
+            margin-bottom:0px;
+            text-align:center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 # Main app
@@ -567,7 +585,22 @@ if st.session_state.logged_in:
                     st.write("---")
         else:
             st.info("No posts available. Be the first to create one!")
+        st.markdown(
+        """
+        <div class="footer">
+            &copy; 2025 GSV BLOGS. All rights reserved.
+        </div>
 
+        <style>
+        .footer{
+            margin-top:30px;
+            margin-bottom:0px;
+            text-align:center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
     elif choice == "Posts":
         post_action = option_menu(
             menu_title=None,   
@@ -662,7 +695,22 @@ if st.session_state.logged_in:
                         st.write("---")
             else:
                 st.info("No posts available. Be the first to create one!")
+            st.markdown(
+                """
+                <div class="footer">
+                     &copy; 2025 GSV BLOGS. All rights reserved.
+                </div>
 
+                <style>
+                .footer{
+                    margin-top:30px;
+                    margin-bottom:0px;
+                   text-align:center;
+                 }
+                 </style>
+                 """,
+                unsafe_allow_html=True,
+            )
         elif post_action == "Write Post":
             st.subheader("📝 Create New Post")
             title = st.text_input("Title", placeholder="Enter a catchy title...")
@@ -681,7 +729,23 @@ if st.session_state.logged_in:
                         # st.rerun()
                     else:
                         st.error("Failed to publish post")
+            st.markdown(
+        """
+        <div class="footer">
+            &copy; 2025 GSV BLOGS. All rights reserved.
+        </div>
 
+        <style>
+        .footer{
+            margin-top:30px;
+            margin-bottom:0px;
+            text-align:center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+        
         elif post_action == "Edit Posts":
             st.subheader("✏ Edit Your Posts")
             user_posts = get_all_posts(author=st.session_state.username)
@@ -713,7 +777,22 @@ if st.session_state.logged_in:
                                 st.error("Failed to update post")
             else:
                 st.info("You have no posts to edit yet. Create your first post!")
+            st.markdown(
+        """
+        <div class="footer">
+            &copy; 2025 GSV BLOGS. All rights reserved.
+        </div>
 
+        <style>
+        .footer{
+            margin-top:30px;
+            margin-bottom:0px;
+            text-align:center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
         elif post_action == "Delete Posts":
             st.subheader("🗑 Delete Your Posts")
             user_posts = get_all_posts(author=st.session_state.username)
@@ -742,13 +821,28 @@ if st.session_state.logged_in:
                                 st.error("Failed to delete post")
             else:
                 st.info("You have no posts to delete.")
+            st.markdown(
+        """
+        <div class="footer">
+            &copy; 2025 GSV BLOGS. All rights reserved.
+        </div>
 
+        <style>
+        .footer{
+            margin-top:30px;
+            margin-bottom:0px;
+            text-align:center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
     elif choice == "Profile":
         st.subheader(f"👤 {st.session_state.username}")
         user = get_user(st.session_state.username)
         
         st.markdown("### Bio")
-        bio = st.text_area("", user[3] if user and user[3] else "Write something about yourself...", 
+        bio = st.text_area("", user[3] if user and user[3] else "", 
                           height=150, key="bio_textarea")
         
         if st.button("Update Profile", key="update_profile_button"):
@@ -763,8 +857,8 @@ if st.session_state.logged_in:
             <h2 style="color: var(--primary);">📧 Contact Us</h2>
             <div style="margin-top: 20px;">
                 <p style="font-size: 18px;">📩 <strong>Email:</strong> contact@gsvblogs.com</p>
-                <p style="font-size: 18px;">📱 <strong>Phone:</strong> +1 (123) 456-7890</p>
-                <p style="font-size: 18px;">🏢 <strong>Address:</strong> 123 Blog Street, Digital City</p>
+                <p style="font-size: 18px;">📱 <strong>Phone:</strong> 9369456947</p>
+                <p style="font-size: 18px;">🏢 <strong>Address:</strong> GSV : Room 5 | Stanza room number : 359</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
