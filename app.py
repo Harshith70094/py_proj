@@ -395,6 +395,16 @@ p, div, span {
     font-size: 14px;
 }
 
+.stTextInput>div>div>input, .stTextArea>div>div>textarea, .stSelectbox>div>div>select {
+    background-color: white !important;
+    color: var(--dark) !important;
+    caret-color: black !important;
+}
+            
+input, textarea {
+    caret-color: black !important;
+}
+
 /* Responsive layout */
 @media (max-width: 768px) {
     .stSidebar {
