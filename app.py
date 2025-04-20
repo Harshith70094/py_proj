@@ -534,7 +534,6 @@ if st.session_state.logged_in:
                         if new_comment.strip():
                             if add_comment(post[0], st.session_state.user_id, new_comment):
                                 st.success("Comment added!")
-                                st.rerun()
                             else:
                                 st.error("Failed to add comment")
                         else:
@@ -630,7 +629,6 @@ if st.session_state.logged_in:
                             if new_comment.strip():
                                 if add_comment(post[0], st.session_state.user_id, new_comment):
                                     st.success("Comment added!")
-                                    st.rerun()
                                 else:
                                     st.error("Failed to add comment")
                             else:
@@ -659,7 +657,7 @@ if st.session_state.logged_in:
             st.subheader("📝 Create New Post")
             title = st.text_input("Title", placeholder="Enter a catchy title...")
             content = st.text_area("Content", height=300, placeholder="Write your post content here...")
-            categories = st.multiselect("Categories", ["Technology", "Travel", "Food", "Lifestyle", "Personal"])
+            categories = st.radio("Categories", ["Technology", "Travel", "Food", "Lifestyle", "Personal"],horizontal=True)
             tags = st.text_input("Tags (comma separated)", placeholder="e.g., tech, programming, web")
             
             if st.button("Publish Post", key="publish_button"):
@@ -679,7 +677,7 @@ if st.session_state.logged_in:
             user_posts = get_all_posts(author=st.session_state.username)
             
             if user_posts:
-                post_to_edit = st.selectbox("Select post to edit", 
+                post_to_edit = st.radio("Select post to edit", 
                                           [f"{post[0]} - {post[2]}" for post in user_posts],
                                           key="edit_post_select")
                 
@@ -701,7 +699,6 @@ if st.session_state.logged_in:
                         if st.button("Update Post", key=f"update_button_{post_id}"):
                             if update_post(post_id, title, content, categories, tags):
                                 st.success("✅ Post updated successfully!")
-                                st.rerun()
                             else:
                                 st.error("Failed to update post")
             else:
@@ -712,7 +709,7 @@ if st.session_state.logged_in:
             user_posts = get_all_posts(author=st.session_state.username)
             
             if user_posts:
-                post_to_delete = st.selectbox("Select post to delete", 
+                post_to_delete = st.radio("Select post to delete", 
                                             [f"{post[0]} - {post[2]}" for post in user_posts],
                                             key="delete_post_select")
                 
@@ -731,7 +728,6 @@ if st.session_state.logged_in:
                         if st.button("Confirm Delete", key=f"confirm_delete_{post_id}"):
                             if delete_post(post_id):
                                 st.success("🗑 Post deleted successfully!")
-                                st.rerun()
                             else:
                                 st.error("Failed to delete post")
             else:
@@ -748,7 +744,6 @@ if st.session_state.logged_in:
         if st.button("Update Profile", key="update_profile_button"):
             if update_profile(st.session_state.username, bio):
                 st.success("👍 Profile updated!")
-                st.rerun()
             else:
                 st.error("Failed to update profile")
 
