@@ -3,7 +3,6 @@ import sqlite3
 import hashlib
 import os
 from datetime import datetime
-import urllib.parse
 from streamlit_option_menu import option_menu
 
 # Initialize database and directories
